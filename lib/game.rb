@@ -44,16 +44,16 @@ class Game
 
   def winner
     winner = WIN_COMBINATIONS.detect{|i| @board.cells[i[0]] + @board.cells[i[1]] + @board.cells[i[2]] == "XXX" || @board.cells[i[0]] + @board.cells[i[1]] + @board.cells[i[2]] == "OOO"}
-    if winner then winner.first else nil end
+    if winner then @board.cells[winner.first] else nil end
   end
 
   def turn
     puts "\nPlease enter move: "
-    move = self.current_player.move
+    move = self.current_player.move(@board)
 
     while !@board.valid_move?(move)
       puts "\nInvalid move, please enter a different one."
-      move = self.current_player.move
+      move = self.current_player.move(@board)
     end
     
     @board.update(move,self.current_player)
