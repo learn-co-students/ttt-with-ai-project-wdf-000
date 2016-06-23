@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'pry'
+
 describe 'Game' do
   describe '::WIN_COMBINATIONS' do
     it 'defines a constant WIN_COMBINATIONS with arrays for each win combination' do
@@ -202,7 +202,7 @@ describe 'Game' do
 
       game.play
     end
-=begin
+
     it 'checks if the game is over after every turn' do
       game = Game.new
       allow($stdout).to receive(:puts)
@@ -217,13 +217,12 @@ describe 'Game' do
     it 'plays the first turn of the game' do
       game = Game.new
       allow($stdout).to receive(:puts)
-binding.pry
       allow(game.player_1).to receive(:gets).and_return("1")
-binding.pry
+
       allow(game).to receive(:over?).and_return(false, true)
-binding.pry
+
       game.play
-binding.pry
+
       expect(game.board.cells).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
@@ -240,7 +239,7 @@ binding.pry
 
       expect(game.board.cells).to eq(["X", "X", " ", "O", " ", " ", " ", " ", " "])
     end
-=end
+
     it 'checks if the game is won after every turn' do
       game = Game.new
       allow($stdout).to receive(:puts)

@@ -24,7 +24,7 @@ class Game
   end
 
   def current_player
-    if @board.turn_count & 1 == 1
+    if @board.turn_count % 2 == 1
       @player_2
     else
       @player_1
@@ -32,7 +32,7 @@ class Game
   end
 
   def over?
-    self.won? or !@board.cells.any?{|x| x == " "}
+    self.won? or self.draw?
   end
 
   def won?
@@ -40,7 +40,7 @@ class Game
   end
 
   def draw?
-    self.over? and !self.won?
+    !@board.cells.any?{|x| x == " "} and !self.won?
   end
 
   def winner
