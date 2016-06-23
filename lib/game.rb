@@ -1,3 +1,4 @@
+require 'pry'
 class Game
   WIN_COMBINATIONS = [[0,1,2],
                       [3,4,5],
@@ -55,16 +56,13 @@ class Game
       puts "\nInvalid move, please enter a different one."
       move = self.current_player.move(@board)
     end
-    
     @board.update(move,self.current_player)
   end
 
   def play
-    until self.over?
+    until self.draw? or self.over?
       turn
       @board.display
-      if self.draw?
-      end 
       if self.won?
       end
     end

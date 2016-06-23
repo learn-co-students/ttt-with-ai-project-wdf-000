@@ -13,6 +13,9 @@ module Engine
     end
   end
 
+
+# This minimax implementation was adapted from my answer on Stack Overflow, Aug 31, 2013; link: http://stackoverflow.com/questions/18548265/testing-tic-tac-toe-win-condition/18549674#18549674
+
 #plays both
 #$x = 0
 #$o = 0
