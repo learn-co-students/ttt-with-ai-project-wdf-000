@@ -1,9 +1,10 @@
 module Players
   class Computer < Player
+    include Engine
+
     def move(board)
-      index = (0..board.cells.size - 1).detect{|x| board.cells[x] == " "}
-      (index + 1).to_s
+      x,o = convert_board_to_x_o(board.cells.reverse)
+      (t(x,o)).to_s
     end
   end
 end
-

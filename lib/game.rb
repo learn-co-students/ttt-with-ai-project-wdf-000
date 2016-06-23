@@ -31,7 +31,7 @@ class Game
   end
 
   def over?
-    !@board.cells.any?{|x| x == " "}
+    self.won? or !@board.cells.any?{|x| x == " "}
   end
 
   def won?
@@ -60,6 +60,19 @@ class Game
   end
 
   def play
-    
+    until self.over?
+      turn
+      @board.display
+      if self.draw?
+      end 
+      if self.won?
+      end
+    end
+
+    if self.won?
+      puts "Congratulations #{self.winner}!"
+    else
+      puts "Cats Game!"
+    end
   end
 end
