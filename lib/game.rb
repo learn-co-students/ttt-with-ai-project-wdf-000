@@ -10,12 +10,13 @@ class Game
     [6,4,2]
   ]
 
-  attr_accessor :board, :player_1, :player_2
+  attr_accessor :board, :player_1, :player_2,  :exit_flag
 
   def initialize(player_1=nil, player_2=nil, board=nil)
     @board = board || Board.new
     @player_1 = player_1 || Players::Human.new("X")
     @player_2 = player_2 || Players::Human.new("O")
+    @exit_flag = false
   end
 
   def current_player
@@ -23,7 +24,7 @@ class Game
   end
 
   def over?
-    self.board.full? || self.won? || self.draw?
+    self.board.full? || self.won? || self.draw? || self.exit_flag
   end
 
   def draw?
@@ -45,11 +46,16 @@ class Game
     puts "Please choose a position between 1 - 9: "
     position = self.current_player.move(self.board)
 
+    if position == "exit"
+      self.exit_flag = true
+      return
+    end
+
     if self.board.valid_move?(position)
       self.board.update(position, self.current_player)
       self.board.display
     else
-      self.turn  
+      self.turn
     end
   end
 

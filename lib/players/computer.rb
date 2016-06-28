@@ -3,6 +3,11 @@ module Players
   class Computer < Player
     @@positions = []
 
+    def initialize(token)
+      super(token)
+      @@positions = []
+    end
+
     def move(board)
 
       position = "1"
@@ -11,7 +16,7 @@ module Players
       end
 
       @@positions << position
-      
+
       return position
     end
   end
