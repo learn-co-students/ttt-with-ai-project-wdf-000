@@ -1,4 +1,4 @@
-  - [ ] All tests pass
+  - [1] All tests pass
   - [ ] 0 player mode works
   - [ ] 1 player mode works
   - [ ] 2 player mode works
