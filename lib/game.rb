@@ -42,12 +42,14 @@ class Game
   end
 
   def turn
+    puts "Please choose a position between 1 - 9: "
     position = self.current_player.move(self.board)
 
     if self.board.valid_move?(position)
       self.board.update(position, self.current_player)
+      self.board.display
     else
-      turn
+      self.turn  
     end
   end
 

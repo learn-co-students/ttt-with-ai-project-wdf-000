@@ -1,8 +1,18 @@
 module Players
 
   class Computer < Player
+    @@positions = []
+
     def move(board)
-      rand(9).to_s
+
+      position = "1"
+      until !@@positions.include?(position)
+        position = rand(10).to_s
+      end
+
+      @@positions << position
+      
+      return position
     end
   end
 end

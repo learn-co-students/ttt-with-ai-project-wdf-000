@@ -1,3 +1,46 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Welcome!"
+
+puts "Please choose the game mode: 1. Watch 2 computers play, 2. One player, 3. Two players"
+input = gets.strip
+
+player_1 = nil
+player_2 = nil
+case input
+when "1"
+  player_1 = Players::Computer.new("X")
+  player_2 = Players::Computer.new("O")
+when "2"
+  puts "Who wants to go first(X)? 1. Player 1, 2. Player 2"
+  player_first = gets.strip
+  if player_first == "1"
+    player_1 = Players::Human.new("X")
+    player_2 = Players::Computer.new("O")
+  elsif player_first == "2"
+    player_1 = Players::Human.new("O")
+    player_2 = Players::Computer.new("X")
+  else
+    puts "Invalid input!"
+  end
+when "3"
+  puts "Who want to go first(X)? 1. Player 1, 2. Player 2"
+  player_first = gets.strip
+  if player_first == "1"
+    player_1 = Players::Human.new("X")
+    player_2 = Players::Human.new("O")
+  elsif player_first == "2"
+    player_1 = Players::Human.new("O")
+    player_2 = Players::Human.new("X")
+  else
+    puts "Invalid input!"
+  end
+else
+  puts "Invalid input!"
+end
+
+
+game = Game.new(player_1, player_2)
+game.play
