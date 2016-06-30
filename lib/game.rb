@@ -39,14 +39,16 @@ class Game
     if !@board.valid_move?(move)
       puts "invalid"
       turn
-    end
+    else
       @board.update(move, current_player)
       puts "It's #{current_player.token}'s turn"
       @board.display
+    end
   end
 
   def play
     while !over?
+      puts "It's #{current_player.token}'s turn"
       puts "where from 1 to 9 would you like to put your token?"
       turn
     end
