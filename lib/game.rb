@@ -7,7 +7,6 @@ class Game
     @player_1 = player_1
     @player_2 = player_2
     @board = board
-    @current_player = nil
   end
 
   def current_player
@@ -38,13 +37,17 @@ class Game
   def turn
     move = current_player.move(@board)
     if !@board.valid_move?(move)
+      puts "invalid"
       turn
     end
       @board.update(move, current_player)
+      puts "It's #{current_player.token}'s turn"
+      @board.display
   end
 
   def play
     while !over?
+      puts "where from 1 to 9 would you like to put your token?"
       turn
     end
     if draw?
