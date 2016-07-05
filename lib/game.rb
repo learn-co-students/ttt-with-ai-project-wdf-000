@@ -51,13 +51,15 @@ class Game
 	def turn
 		player = current_player
 		input = ""
+		@board.display
 		loop do
 			input = player.move(@board)
 			break if @board.valid_move?(input)
+			puts "invalid move"
 		end
-		@board.display
 		@board.update(input,player)
 		@board.display
+		puts "============"
 	end
 
 	def play
