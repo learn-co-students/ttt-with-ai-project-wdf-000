@@ -1,3 +1,4 @@
+require_relative '../player.rb'
 require 'pry'
 
 module Players
