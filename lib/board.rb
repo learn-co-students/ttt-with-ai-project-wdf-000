@@ -37,11 +37,10 @@ class Board
 
   def valid_move?(input)
     position(input) == " "
-    # binding.pry
   end
 
   def update(position, player_token)
-    
+    cells[position.to_i - 1] = "#{player_token}"
   end
 
 end
