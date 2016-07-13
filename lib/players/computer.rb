@@ -51,7 +51,6 @@ class Computer < Player
       end
     end
 
-
     comb.each do |c|
       if arr[c[0]] == self.token && arr[c[1]].strip == "" && arr[c[2]].strip==""
         return (c[2] + 1)
