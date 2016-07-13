@@ -11,7 +11,7 @@ class Computer < Player
     elsif board.cells[4].strip == ""
       "5"
     elsif board.turn_count == 1
-      [1,3,7,9].sample
+      [1,3,7,9].sample.to_s
     else
       ai_move(board).to_s
     end
@@ -19,7 +19,7 @@ class Computer < Player
 
   def ai_move(board)
 
-    comb = [
+    comb = [      # winning combinations
         [0,1,2],
         [3,4,5],
         [6,7,8],
@@ -30,8 +30,8 @@ class Computer < Player
         [2,4,6]
       ]
 
-    arr = board.cells
-    comb.each do |c| 
+    arr = board.cells # current board
+    comb.each do |c| # tries to win
       if (arr[c[0]] == self.token && arr[c[1]] == self.token && arr[c[2]].strip == "")
         return (c[2] + 1)
       elsif arr[c[0]] == self.token && arr[c[1]].strip == "" && arr[c[2]]== self.token
@@ -41,7 +41,7 @@ class Computer < Player
       end
     end
 
-    comb.each do |c|
+    comb.each do |c| # defensive moves
       if (arr[c[0]] == o_token && arr[c[1]] == o_token && arr[c[2]].strip=="")
         return (c[2] + 1)
       elsif arr[c[0]] == o_token && arr[c[1]].strip == "" && arr[c[2]]== o_token
@@ -51,7 +51,7 @@ class Computer < Player
       end
     end
 
-    comb.each do |c|
+    comb.each do |c| # take a second positon of any winning combinations
       if arr[c[0]] == self.token && arr[c[1]].strip == "" && arr[c[2]].strip==""
         return (c[2] + 1)
       elsif arr[c[0]].strip == "" && arr[c[1]] == self.token && arr[c[2]].strip== ""

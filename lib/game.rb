@@ -14,7 +14,7 @@ class Game
       [6,4,2]
     ]
 
-    def initialize(player_1 = Players::Human.new("X") , player_2 = Players::Human.new("O") , board = Board.new)
+    def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
       @player_1 = player_1
       @player_2 = player_2
       @board = board
@@ -46,9 +46,9 @@ class Game
 
     def won?
       if wins_o? || wins_x?
-        return true
+        true
       elsif board.turn_count == 9
-        return false
+        false
       end
     end
 
@@ -74,9 +74,7 @@ class Game
 
     def play
       board.display
-      until over?
-        turn
-      end 
+      turn until over? 
       if won?
         puts "Congratulations #{winner}!" 
       elsif draw?
