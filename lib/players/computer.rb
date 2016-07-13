@@ -42,7 +42,7 @@ class Computer < Player
     end
 
     comb.each do |c| # defensive moves
-      if (arr[c[0]] == o_token && arr[c[1]] == o_token && arr[c[2]].strip=="")
+      if (arr[c[0]] == o_token && arr[c[1]] == o_token && arr[c[2]].strip== "")
         return (c[2] + 1)
       elsif arr[c[0]] == o_token && arr[c[1]].strip == "" && arr[c[2]]== o_token
         return (c[1] + 1)
@@ -52,7 +52,7 @@ class Computer < Player
     end
 
     comb.each do |c| # take a second positon of any winning combinations
-      if arr[c[0]] == self.token && arr[c[1]].strip == "" && arr[c[2]].strip==""
+      if arr[c[0]] == self.token && arr[c[1]].strip == "" && arr[c[2]].strip== ""
         return (c[2] + 1)
       elsif arr[c[0]].strip == "" && arr[c[1]] == self.token && arr[c[2]].strip== ""
         return (c[2] + 1)
