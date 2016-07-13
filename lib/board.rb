@@ -39,8 +39,9 @@ class Board
     position(input) == " "
   end
 
-  def update(position, player_token)
-    cells[position.to_i - 1] = "#{player_token}"
+  def update(position, player)
+    # binding.pry
+    self.cells[position.to_i - 1] = player.token
   end
 
 end

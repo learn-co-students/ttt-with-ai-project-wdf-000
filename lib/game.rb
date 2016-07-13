@@ -55,21 +55,23 @@ class Game
   def turn
     puts "Make your move player #{current_player.token}"
     move = current_player.move(board)
+    # binding.pry
     if board.valid_move?(move)
-      board.update(move, current_player.token)
+      self.board.update(move, current_player)
+      board.display
     else
       puts "Something went wrong, try again"
+      # binding.pry
       turn
     end
   end
 
   def play
-    puts "Welcome to Tic Tac Toe Game"
     until over?
       turn
     end
     if won?
-      puts "Congratulations #{winner}!"
+      puts "Congratulations #{current_player.token}!"
     elsif draw?
       puts "Cats Game!"
     end
