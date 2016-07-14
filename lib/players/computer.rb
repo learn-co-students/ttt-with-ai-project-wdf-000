@@ -16,7 +16,7 @@ module Players
 
     def initialize(token)
       super
-      # basic board definitions
+      # basic board definitions (locations)
       @center = ["5"]
       @edges = ["2", "4", "6", "8"]
       @corners = ["1", "3", "7", "9"]
@@ -68,6 +68,7 @@ module Players
 
     end
 
+    # this retuns true if any diagonal section is filled
     def diagonal_full(board)
       diagonal_locations = [["1", "5", "9"], ["3", "5", "7"]]
       # store diagonal states in results
@@ -78,13 +79,14 @@ module Players
       results.any? {|arr| arr.uniq.count == 1}
     end
 
+    # picks a random from a given board location
     def pick_random(location)
       # shuffle and remove from available_moves
       location.shuffle!
       location.pop
     end
 
-
+    # returns random opposite corner based on a given edge
     def take_furthest_corner(edges)
       if edges.include?("2") == false
         return pick_random(["7", "9"])
@@ -98,6 +100,7 @@ module Players
       binding.pry
     end
 
+    # updates available moves based on all locations
     def update_available_moves(board)
       position_locations = [self.center, self.edges, self.corners]
       position_locations.each do |locations|
