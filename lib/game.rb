@@ -55,13 +55,11 @@ class Game
   def turn
     puts "Make your move player #{current_player.token}"
     move = current_player.move(board)
-    # binding.pry
     if board.valid_move?(move)
       self.board.update(move, current_player)
       board.display
     else
       puts "Something went wrong, try again"
-      # binding.pry
       turn
     end
   end
@@ -71,7 +69,7 @@ class Game
       turn
     end
     if won?
-      puts "Congratulations #{current_player.token}!"
+      puts "Congratulations #{winner}!"
     elsif draw?
       puts "Cats Game!"
     end
