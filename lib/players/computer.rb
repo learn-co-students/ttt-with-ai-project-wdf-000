@@ -35,20 +35,23 @@ module Players
       when board.turn_count == 0
         # randomize corners and pick one
         return pick_random(self.corners)
-      # 3rd global move & center open
+      # less than 3 global moves & center open
       when board.turn_count < 3 && board.valid_move?(center.first)
+        # if opponent in edge && it is 2nd global move
+        if edges.count != 4 && board.turn_count == 1
+          return self.center.pop
         # if opponent in edge
-        if edges.count != 4
+        elsif edges.count != 4
           # take furthest corner from that edge
           return take_furthest_corner(self.edges)
         else
           # else take center
           return self.center.pop
         end
-      # 3rd global move & center NOT open
+      # less than 3 global moves & center NOT open
       when board.turn_count < 3 && !board.valid_move?(center.first)
         return pick_random(self.corners)
-      # 4th global move & diagonal full
+      # less than 4 global moves & diagonal full
       when board.turn_count < 4 && diagonal_full(board) == true
           return pick_random(self.edges)
       else
