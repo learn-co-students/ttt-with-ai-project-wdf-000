@@ -43,22 +43,24 @@ module Players
 			WIN_COMBINATIONS.each do |x|
 				x.each do |y|
 					if board.cells[y] == @entok
-						#x.each { |j| @tracker[j] += 5 } 
 						@tracker[y] += 5
 					end
-				end
-			end
-
-			#my token section
-			WIN_COMBINATIONS.each do |x|
-				x.each do |y|
 					if board.cells[y] == @mytok
-						#x.each { |j| @tracker[j] += -7 }
 						@tracker[y] -= 6
 					end
 				end
 			end
 
+=begin
+			#my token section
+			WIN_COMBINATIONS.each do |x|
+				x.each do |y|
+					if board.cells[y] == @mytok
+						@tracker[y] -= 6
+					end
+				end
+			end
+=end
 			sum =  []
 			WIN_COMBINATIONS.each do |x|
 				hold = 0
@@ -71,6 +73,7 @@ module Players
 			#prevent tmp from becoming nil, removing the largest num and move to the next num
 			tmp = nil
 			while tmp == nil
+				#maybe this line can move one line above
 				sum = sum.map { |n| n.abs }
 				combo = sum.index( sum.max )
 				sum[combo] = 0
