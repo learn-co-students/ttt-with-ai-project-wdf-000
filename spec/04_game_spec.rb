@@ -45,6 +45,7 @@ describe 'Game' do
       board = Board.new
       player_1 = Player.new("X")
       player_2 = Player.new("O")
+      
 
       game = Game.new(player_1, player_2, board)
 
