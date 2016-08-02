@@ -1,7 +1,7 @@
 require 'pry'
 module Players
   class Computer < Player
-    attr_accessor :token, :board, :game
+    attr_accessor :token, :board
 
     WIN_COMBINATIONS = [
     [0,1,2],
@@ -13,11 +13,6 @@ module Players
     [0,4,8],
     [6,4,2]
     ]
-
-    def initialize(token, game = nil)
-      @token = token
-      @game = game
-    end
 
     def move(board = nil)
       @board = board
@@ -49,7 +44,7 @@ module Players
         if board_status.count(token) == 2 && board_status.count(" ") == 1
           win_position = board_status.find_index(" ")
           position = win_combination[win_position] + 1
-          binding.pry
+          # binding.pry
         elsif board_status.count(opponent_token) == 2 && board_status.count(" ") == 1
           win_position = board_status.find_index(" ")
           position = win_combination[win_position] + 1
