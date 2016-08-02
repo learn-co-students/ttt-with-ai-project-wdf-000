@@ -13,7 +13,9 @@ class Game
   ]
 
   def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
-    @player_1, @player_2, @board = player_1, player_2, board  
+    @player_1, @player_2, @board = player_1, player_2, board 
+    @@game = self
+    @board.display 
   end
 
   def current_player
@@ -45,7 +47,7 @@ class Game
         return win_combination
       end
     end
-    false # ask about this.. why doesn't "else false" work?
+    false 
   end
 
   def draw?
@@ -61,10 +63,12 @@ class Game
   def turn
     puts "Please choose a position, 1-9:"
     player = current_player
-    input = player.move
+    input = player.move(board)
     if @board.valid_move?(input)
       @board.update(input, player)
+      @board.display
     else
+      puts "That move is invalid. Choose again."
       turn
     end
   end
@@ -81,5 +85,6 @@ class Game
       puts "Cats Game!"
     end
   end
-  
+
 end
+
