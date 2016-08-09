@@ -2,16 +2,16 @@ module Players
 	
 	class Computer < Player
 	
-	WIN_COMBINATIONS = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6]
-	]
+	# WIN_COMBINATIONS = [
+	# 	[0, 1, 2],
+	# 	[3, 4, 5],
+	# 	[6, 7, 8],
+	# 	[0, 3, 6],
+	# 	[1, 4, 7],
+	# 	[2, 5, 8],
+	# 	[0, 4, 8],
+	# 	[2, 4, 6]
+	# ]
 
 	def move(board)
 		# rand(1..9).to_s
@@ -46,13 +46,13 @@ module Players
 	end
 
 	def win_detect(board)
-		WIN_COMBINATIONS.detect do |win_combination|
+		 Game::WIN_COMBINATIONS.detect do |win_combination|
 			win_combination.count{|win_index| board.cells[win_index] == self.token} == 2 && win_combination.count{|win_index| board.cells[win_index] == " "} == 1
 		end
 	end
 
 	def block_detect(board)
-		WIN_COMBINATIONS.detect do |win_combination|
+		 Game::WIN_COMBINATIONS.detect do |win_combination|
 			(win_combination.count{|win_index| board.cells[win_index] == "X"} == 2 || win_combination.count{|win_index| board.cells[win_index] == "O"} == 2) && win_combination.count{|win_index| board.cells[win_index] == " "} == 1
 		end
 	end
