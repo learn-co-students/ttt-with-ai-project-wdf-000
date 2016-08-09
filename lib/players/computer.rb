@@ -2,31 +2,63 @@ module Players
 	
 	class Computer < Player
 	
-	# WIN_COMBINATIONS = [
-	# 	[0, 1, 2],
-	# 	[3, 4, 5],
-	# 	[6, 7, 8],
-	# 	[0, 3, 6],
-	# 	[1, 4, 7],
-	# 	[2, 5, 8],
-	# 	[0, 4, 8],
-	# 	[2, 4, 6]
-	# ]
-
 	def move(board)
 		# rand(1..9).to_s
+		if !board.taken?("5")
+			"5"
+		elsif board.taken?("5") && !self.any_corner_taken?(board)
+			self.corner_move
+		else
+			self.move_for_best_result(board)
+		end
+	end
+
+	def move_for_best_result(board)
 		if  board.cells.count{|cell| cell == " "} == 1
 			# last_move
 			last_move(board)
 		elsif self.win_before_block(board) != nil
 			self.move_after_detect(board)
-		elsif !board.taken?("5")
-			"5"
-		elsif ["1", "3", "7", "9"].any?{|position| board.taken?(position)} && !["2", "4", "6", "8"].all?{|position| board.taken?(position)}
-			["2", "4", "6", "8"].sample
-		else
-			["1", "3", "7", "9"].sample
+		elsif self.corner_all_taken?(board)
+			rand(1..9).to_s
+		elsif self.center_all_taken?(board)
+			rand(1..9).to_s
+		elsif self.any_corner_taken?(board)
+			self.center_or_corner_move(board)
 		end
+	end
+
+	def center_or_corner_move(board)
+		# binding.pry
+		if (board.cells[0] == board.cells[8] && board.cells[0] != " ") || (board.cells[2] == board.cells[6] && board.cells[2] != " ")
+			self.center_move
+		elsif board.cells[0] == board.cells[4] ||  board.cells[4] == board.cells[8]
+			self.corner_move
+		elsif board.cells[2] == board.cells[4] ||  board.cells[4] == board.cells[6]
+			self.corner_move
+		else
+			self.corner_move
+		end
+	end
+
+	def any_corner_taken?(board)
+		["1", "3", "7", "9"].any?{|position| board.taken?(position)}
+	end
+
+	def corner_all_taken?(board)
+		["1", "3", "7", "9"].all?{|position| board.taken?(position)} 
+	end
+
+	def center_all_taken?(board)
+		["2", "4", "6", "8"].all?{|position| board.taken?(position)} 
+	end
+
+	def corner_move
+		["1", "3", "7", "9"].sample
+	end
+
+	def center_move
+		["2", "4", "6", "8"].sample 
 	end
 
 	def last_move(board)

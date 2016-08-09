@@ -20,7 +20,7 @@ end
 
 def game_type_1
 	input = gets.strip.downcase
-	if input == "human"
+	if input == "human" || input == "h"
 		player_1 = Players::Human.new("X")
 		player_2 = Players::Computer.new("O")
 		puts "Please enter your name:"
@@ -28,7 +28,7 @@ def game_type_1
 		game_human_first = Game.new(player_1, player_2, board=Board.new)
 		game_human_first.board.display
 		game_human_first.play
-	elsif input == "computer"
+	elsif input == "computer" || input == "c"
 		player_1 = Players::Computer.new("X")
 		player_2 = Players::Human.new("O")
 		puts "Please enter your name:"
