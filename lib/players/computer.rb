@@ -32,29 +32,3 @@ end
 
 
 # 1 3 7 9 5
-
-
-
-# if !board.valid_move?("1")
-#   if !board.valid_move?("3")
-#     if !board.valid_move("7")
-#       if !board.valid_move("9")
-#         if !board.valid_move("5")
-#           while board.valid_move(choice2)
-#             choice2
-#           end
-#         else
-#           "5"
-#         end
-#       else
-#         "9"
-#       end
-#     else
-#       "7"
-#     end
-#   else
-#     "3"
-#   end
-# else
-#   "1"
-# end
