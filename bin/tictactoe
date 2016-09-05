@@ -1,3 +1,90 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts "Welcome to Tic Tac Toe!"
+
+def game_menu
+	puts "This game of Tic Tac Toe has three modes with different numbers of players:"
+	puts "0. A 0 player game has two computer players playing against each other with no interaction from the user."
+	puts "1. A 1 player game has a human playing against a computer."
+	puts "2. A 2 player game has two human players."
+	puts "What kind of game would you like to play? Please enter 0, 1, or 2."
+end
+
+def game_type_0
+	game = Game.new(player_1=Players::Computer.new("X"), player_2=Players::Computer.new("O"), board=Board.new)
+	game.play
+end
+
+def game_type_1
+	input = gets.strip.downcase
+	if input == "human"
+		player_1 = Players::Human.new("X")
+		player_2 = Players::Computer.new("O")
+		puts "Please enter your name:"
+		player_1.name = gets.strip.capitalize
+		game_human_first = Game.new(player_1, player_2, board=Board.new)
+		game_human_first.board.display
+		game_human_first.play
+	elsif input == "computer"
+		player_1 = Players::Computer.new("X")
+		player_2 = Players::Human.new("O")
+		puts "Please enter your name:"
+		player_2.name = gets.strip.capitalize
+		game_computer_first = Game.new(player_1, player_2, board=Board.new)
+		game_computer_first.play
+	else
+	puts "Invalid input. Please enter Computer or Human."
+	game_type_1
+	end
+end
+
+
+def game_type_2
+	puts "Who should go first and be 'X'? Please enter the first player's name:"
+	player_1 = Players::Human.new("X")
+	player_1.name = gets.strip.capitalize
+	puts "Please enter the second player's name:"
+	player_2 = Players::Human.new("O")
+	player_2.name = gets.strip.capitalize
+	game = Game.new(player_1, player_2, board=Board.new)
+	game.board.display
+	game.play
+end
+
+def game_play
+	game_type_input = gets.strip
+
+	case game_type_input
+	when "0"
+		game_type_0
+	when "1"
+		puts "Who should go first and be 'X'? Please enter Computer or Human."
+		game_type_1
+	when "2"
+		game_type_2
+	else
+		puts "Invalid input. Please enter 0, 1, or 2."
+		game_play
+	end
+end
+
+def play_again
+	puts "Would you like to play again? yes/no"
+	play_again_input = gets.strip.downcase
+	if play_again_input == "yes"
+		game_menu
+		game_play
+		play_again
+	elsif play_again_input == "no"
+		puts "Goodbye!" 
+	else
+		puts "Invalid input. Please enter Yes, or No."
+		play_again
+	end
+end
+
+game_menu
+game_play
+play_again
