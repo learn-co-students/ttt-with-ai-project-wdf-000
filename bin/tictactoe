@@ -6,7 +6,7 @@ require_relative '../config/environment'
 puts "Welome to TicTacToe!"
 
 def game_type
-  puts "Would you like to play with 0 players, 1 player, or 2 players?"
+  puts "Would you like to play with 0 human players, 1 human player, or 2 human players?"
 
   input = gets.chomp.to_i
 
