@@ -64,14 +64,15 @@ class Game
   end
 
   def turn
+    puts "Please enter 1-9:"
+    board.display
     move = current_player.move(board)
-#    puts "Please enter 1-9:"
-#    input = gets.chomp
-#    index = input(index)
 
     if board.valid_move?(move)
       board.update(move, current_player)
+      board.display
     else
+      puts "Input Null"
       turn
     end
   end

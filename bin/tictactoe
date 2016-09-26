@@ -1,3 +1,43 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+
+puts "Welome to TicTacToe!"
+
+def game_type
+  puts "Would you like to play with 0 players, 1 player, or 2 players?"
+
+  input = gets.chomp.to_i
+
+  if input == 0
+    ai_game = Game.new(player_1=Players::Computer.new("X"), player_2=Players::Computer.new("O"), board=Board.new)
+    ai_game.play
+  elsif input == 1
+    human_vs_ai_game = Game.new(player_1=Players::Human.new("X"), player_2=Players::Computer.new("O"), board=Board.new)
+    human_vs_ai_game.play
+    play_again?
+  elsif input == 2
+    human_vs_human = Game.new(player_1=Players::Human.new("X"), player_2=Players::Human.new("O"), board=Board.new)
+    human_vs_human.play
+    play_again?
+  else
+    puts "Does Not Compute!\nEnter Valid Input:"
+    input
+  end
+end
+
+def play_again?
+  puts "Would you like to play again?\ny/n\n"
+  input = gets.chomp
+  if input == "y"
+    game_type
+  elsif input == "n"
+    "Peace"
+  else
+    puts "Does Not Compute!"
+    play_again
+  end
+end
+
+game_type
