@@ -22,7 +22,7 @@ def game_type
     human_vs_human.play
     play_again?
   else
-    puts "Does Not Compute!\nEnter Valid Input:"
+    puts "Does Not Compute!\nEnter Valid Input:\n"
     input
   end
 end
@@ -33,10 +33,10 @@ def play_again?
   if input == "y"
     game_type
   elsif input == "n"
-    "Peace"
+    puts "Peace"
   else
     puts "Does Not Compute!"
-    play_again
+    play_again?
   end
 end
 
