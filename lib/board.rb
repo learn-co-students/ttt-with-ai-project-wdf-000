@@ -21,11 +21,11 @@ class Board
   end
 
   def position(input)
-    @cells[input.to_i-1]
+    cells[input.to_i-1]
   end
 
   def full?
-    if @cells.any? {|position| position == " "}
+    if cells.any? {|position| position == " "}
       false
     else
       true
@@ -34,7 +34,7 @@ class Board
 
   def turn_count
     turns = 0
-    @cells.each do |turn|
+    cells.each do |turn|
     if turn == "X" || turn == "O"
       turns += 1
     end
