@@ -14,7 +14,9 @@ module Players
 #board = ["X", "O", "X", "O", "X", "X", "O", "","O"]
 #board = ["X", "O", "X", "O", "X", "X", "O", "X","O"]
 #calculate draw combos, iterate though and base ai over moves on it, will the AI refuse to win in an Ai vs Human game in this case?  
-#If not, maybe this should be implemented
+#If not, maybe this should be implemented.  
+#would be interesting to see two opposing dumdums racing to bottom in a more multi-faceted game, 
+#like Lemmings the game meets Iodiocracy the movie
 
 #dumdum AI will lose more often than not, CLI often breaks if game_type == ai_vs_ai
     def move(board)
