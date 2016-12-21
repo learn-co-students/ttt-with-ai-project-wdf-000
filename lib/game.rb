@@ -1,6 +1,9 @@
 class Game
   attr_accessor :board, :player_1, :player_2
 
+  @@wins = 0
+  @@draws = 0
+
   WIN_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -13,9 +16,9 @@ class Game
   ]
 
   def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
-    @player_1, @player_2, @board = player_1, player_2, board 
+    @player_1, @player_2, @board = player_1, player_2, board
     @@game = self
-    @board.display 
+    @board.display
   end
 
   def current_player
@@ -40,14 +43,14 @@ class Game
       position_1 = @board.cells[win_index_1]
       position_2 = @board.cells[win_index_2]
       position_3 = @board.cells[win_index_3]
-    
+
       if position_1 == "X" && position_2 == "X" && position_3 == "X"
         return win_combination
       elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
         return win_combination
       end
     end
-    false 
+    false
   end
 
   def draw?
@@ -78,13 +81,15 @@ class Game
       turn
     end
     if winner == "X"
+      @@wins += 1
       puts "Congratulations X!"
     elsif winner == "O"
+      @@wins += 1
       puts "Congratulations O!"
     else
+      @@draws += 1
       puts "Cats Game!"
     end
   end
 
 end
-

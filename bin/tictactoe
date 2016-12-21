@@ -4,49 +4,49 @@ require_relative '../config/environment'
 
 def game_play
   puts "Welcome to TicTacToe!"
-  puts "Enter 0, 1, or 2 to indicate the number of human players:"
-  answer = gets.strip
-  if answer == "1"
-    puts "Player 1, please choose your token, X or O:"
-    token_response = gets.strip
-    player_1 = Players::Human.new(token_response)
-    if player_1.token = "X"
-      second = "O"
-    else
-      second = "X"
-    end
-    player_2 = Players::Computer.new(second)
-  elsif answer == "2"
-    puts "Player 1, please choose your token, X or O:"
-    token_response = gets.strip
-    player_1 = Players::Human.new(token_response)
-    if player_1.token == "X"
-      second = "O"
-    else
-      second = "X"
-    end
-    player_2 = Players::Human.new(second)
-  elsif answer == "0"
+  # puts "Enter 0, 1, or 2 to indicate the number of human players:"
+  # answer = gets.strip
+  # if answer == "1"
+  #   puts "Player 1, please choose your token, X or O:"
+  #   token_response = gets.strip
+  #   player_1 = Players::Human.new(token_response)
+  #   if player_1.token = "X"
+  #     second = "O"
+  #   else
+  #     second = "X"
+  #   end
+  #   player_2 = Players::Computer.new(second)
+  # elsif answer == "2"
+  #   puts "Player 1, please choose your token, X or O:"
+  #   token_response = gets.strip
+  #   player_1 = Players::Human.new(token_response)
+  #   if player_1.token == "X"
+  #     second = "O"
+  #   else
+  #     second = "X"
+  #   end
+  #   player_2 = Players::Human.new(second)
+  # elsif answer == "0"
     player_1 = Players::Computer.new("X")
     player_2 = Players::Computer.new("O")
-  end
+  # end
 
   game = Game.new(player_1, player_2)
-       
+
   game.play
 
-  if game.over?
-    puts "Would you like to play again, y/n?"
-    answer = gets.strip
-    if answer == "y"
-      game_play
-    else
-      exit
-    end
-  end
+  # if game.over?
+  #   puts "Would you like to play again, y/n?"
+  #   answer = gets.strip
+  #   if answer == "y"
+  #     game_play
+  #   else
+  #     exit
+  #   end
+  # end
 end
 
-game_play
-
-
-  
+# game_play
+100000.times { game_play }
+puts "Wins equals " + Game.class_variable_get(:@@wins).to_s
+puts "Draws equals " + Game.class_variable_get(:@@draws).to_s
