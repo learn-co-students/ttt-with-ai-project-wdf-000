@@ -1,3 +1,63 @@
 #!/usr/bin/env ruby
 
-require_relative '../config/environment'
+#require_relative '../config/environment'
+require_relative '../lib/players/computer.rb'
+require_relative '../lib/players/human.rb'
+require_relative '../lib/game.rb'
+require_relative '../lib/board.rb'
+
+#player1 = Players::Human.new("X")
+#player1 = Players::Computer.new("X")
+#player2 = Players::Computer.new("O")
+#Game.new(player1,player2,Board.new).play
+
+#pick side function
+def pick_side
+	input =""
+	until input == "X" || input == "O"
+		puts "Pick your side, \"X\" or \"O\":"
+		input = gets.strip
+	end
+	input
+end
+
+#reverse side function
+def other_token(input)
+	input == "X" ? "O" : "X"
+end
+
+puts "Welcome to Tic Tac Toe Game!"
+
+puts "Your game mode: "
+
+puts "0 - Computer VS Computer"
+puts "1 - Player VS computer"
+puts "2 - Player VS Player"
+
+input = gets.strip
+
+player1 = nil
+player2 = nil
+
+case input
+	when "0"
+		player1 = Players::Computer.new("X")
+		player2 = Players::Computer.new("O")
+	when "1"
+		yourside = pick_side
+		otherside = other_token(yourside)
+		player1 = Players::Human.new(yourside)
+		player2 = Players::Computer.new(otherside)
+	when "2"
+		yourside = pick_side	
+		otherside = other_token(yourside)
+		player1 = Players::Human.new(yourside)
+		player2 = Players::Human.new(otherside)
+	else
+		puts "Invalid input, default selected"
+end
+
+
+Game.new(player1,player2,Board.new).play
+
+
