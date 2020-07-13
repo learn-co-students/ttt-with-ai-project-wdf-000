@@ -1,3 +1,24 @@
 #!/usr/bin/env ruby
-
+require 'pry'
 require_relative '../config/environment'
+require_relative '../lib/game_helpers.rb'
+
+puts "Welcome to TicTacToe"
+
+game_input = nil
+range = ["0", "1", "2"]
+until range.include?(game_input)
+  puts "What kind of game you want 0, 1, 2"
+  game_input = gets.chomp
+end
+
+case game_input
+when "0"
+  computer_vs_computer
+when "1"
+  computer_vs_player
+when "2"
+  player_vs_player
+end
+
+
