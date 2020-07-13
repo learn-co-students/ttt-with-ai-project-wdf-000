@@ -1,3 +1,64 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def starting_spiel(response)
+  if response == "wargames"
+    won_times = 0
+    100.times do
+      game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
+      game.play
+      if game.won?
+        won_times += 1
+      end
+    end
+    puts won_times
+  else
+  case response.to_i
+  when 0
+    player_1 = Players::Computer.new("X")
+    player_2 = Players::Computer.new("O")
+    puts "Great! The computers are excited to play!"
+  when 1
+    puts "Would you like to go first? This will make you \"X\" and the computer \"O\"."
+    response_2 = gets.chomp
+    if response_2 == "yes"
+      player_1 = Players::Human.new("X")
+      player_2 = Players::Computer.new("O")
+    else
+      player_1 = Players::Computer.new("X")
+      player_2 = Players::Human.new("O")
+    end
+  when 2
+    player_1 = Players::Human.new("X")
+    player_2 = Players::Human.new("O")
+    puts "Okay, whoever wants to go first should sit in front of the keyboard. They'll be \"X\"."
+  end
+
+  [player_1, player_2]
+
+end
+end
+
+puts "Welcome! Let's play Tic Tac Toe! Would you like to play a 0, 1 or 2 player game?"
+
+response = gets.chomp
+players = starting_spiel(response)
+
+this_game = Game.new(players[0], players[1])
+this_game.play
+
+if this_game.over?
+  puts "Would you like to play again? Type 'exit' if not."
+end
+
+continue = gets.chomp
+if continue == "yes"
+  puts "Great! Would you like to play a 0, 1 or 2 player game?"
+  response = gets.chomp
+  players = starting_spiel(response)
+  this_game = Game.new(players[0], players[1])
+  this_game.play
+else
+  puts "See you later!"
+end
